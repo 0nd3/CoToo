@@ -1,16 +1,15 @@
 # CoToo
 CoToo on OAMKin kesäprojektina 2023 toteutettu mobiilisovellus.
 <br><br>
-![CoTooLogo](https://github.com/0nd3/CoToo/assets/57521123/5cfb64bc-ab08-4c42-b4fc-74e3bc8d3a92)
+![CoTooLogoBlack](https://github.com/0nd3/CoToo/assets/57521123/d74f3ee3-2b7b-48d2-aeab-812f225f1c24)
 <br><br>
-Projektissa suunnittelen ja toteutan finngridin päästödataa käyttäjän valitsemalla ajanjaksolla esittävän mobiilisovelluksen. Ohjelmakoodi toteutetaan Android studio-kehitysympäristössä Kotlin-ohjelmointikielellä. 
+<h2>Projektin aihe</h2>
+Projektin aihe on android studio-kehitysympäristössä kotlin-ohjelmointikielellä toteutettava mobiilisovellus, jolla käyttäjä pystyy tarkastelemaan sähköntuotannosta ja –kulutuksesta aiheutuneita päästöjä valitulta aikajaksolta, tai kokonaisuutena. Käyttälle esitellään uusimpia arvoja verrattuna edeltäneisiin ja käyttäjä pystyy määrittämään mittausaikajakson, jolta päästöarvotuloste koostetaan.
 <br><br>
---KÄYTTÖLIITTYMÄSUUNNITELMA TÄHÄN--
+<h2>Käyttöliittymä</h2>
+Käyttöliittymän tulee olla selkeä, miellyttävän näköinen ja sulava käyttää. Sen tulee sisältää menu, tulostenäkymä jossa käyttäjä voi määrittää mittausaikajakson, asetussivu ja infoseloste. 
 <br><br>
-Muita työkaluja, joita projektissa käytän ovat Git-versionhallinta, finngridin päästö-API ja firebasen autentikaatio. 
-<br>
-Ohjelmistossa käyttäjä voi rekisteröidä tunnuksen ja kirjautua sisälle, selatakseen finngridin APIsta saatavaa päästödataa kuvaajina ja lukuina. 
-<br>
-Sen lisäksi käyttäjä voi säätää ohjelmiston asetuksia ja tarkastella ohjelmiston taustatietoja.
+<h2>API</h2>
+Projektissa on käytössä Fingridin päästö-API, jolla haetaan mitattua dataa sähkön tuotannon ja kulutuksen päästöistä määritellyn aikajakson ajalta tai viimeisimmän lisäyksen perusteella. 
 <br><br>
 -OL-
