@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.CoToo" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.CoToo" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/lightgreenbg</item>
+        <item name="colorPrimaryVariant">@color/darkgreenbg</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/lightgreenhl</item>
+        <item name="colorSecondaryVariant">@color/darkgreenhl</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Customize your theme here. -->
+        <item name="background">@color/lightgreenbg</item>
+    </style>
 </resources>
