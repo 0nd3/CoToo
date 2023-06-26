@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.CoToo" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="Theme.CoToo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/lightgreenbg</item>
         <item name="colorPrimaryVariant">@color/darkgreenbg</item>
@@ -11,6 +11,6 @@
         <item name="colorSecondaryVariant">@color/darkgreenhl</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Customize your theme here. -->
-        <item name="background">@color/lightgreenbg</item>
+        <item name="android:background">@color/lightgreenbg</item>
     </style>
 </resources>
