@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CoToo</string>
+    <string name="settings_greet">Einstellungen</string>
+    <string name="menu_greet">Information</string>
+    <string name="emissions_greet">Emissionen</string>
+
+</resources>

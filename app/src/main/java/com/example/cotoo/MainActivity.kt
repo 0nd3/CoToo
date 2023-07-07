@@ -1,35 +1,50 @@
 package com.example.cotoo
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
-import com.example.cotoo.ui.theme.CoTooTheme
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var navController: NavController
+    private lateinit var dataStoreManager: DataStoreManager
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        dataStoreManager = DataStoreManager(this)
+
+        checkThemeMode()
+
         // setcontentview vai setcontent? tutkaileppa voisko setcontentilla näpsäkästi tehä saman.
-
-
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         setupWithNavController(bottomNavigationView , navController)
+
+    }
+
+    private fun checkThemeMode() {
+        lifecycleScope.launch {
+            when (viewModel.getTheme.first()) {
+                true -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }
+
+                false -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
+            }
+        }
     }
 }

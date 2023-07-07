@@ -1,59 +1,87 @@
 package com.example.cotoo
 
+import android.app.LocaleManager
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
+import com.example.cotoo.databinding.FragmentPreferencesBinding
+import android.os.LocaleList
+import android.widget.AdapterView
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.activityViewModels
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PreferencesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PreferencesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var binding: FragmentPreferencesBinding
+    private val viewModel: MainViewModel by activityViewModels()
+    private val localeList =  listOf("de", "en", "fi", "sv")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_preferences, container, false)
-    }
+        binding = FragmentPreferencesBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PreferencesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PreferencesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        // yötilaswitchin listeneri
+
+        binding.ModeSwitch.setOnCheckedChangeListener { _, b ->
+            when (b) {
+                true ->  {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    viewModel.setTheme(true)
+                }
+
+                false -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    viewModel.setTheme(false)
                 }
             }
+        }
+        val isNightModeOn: Boolean = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
+        binding.ModeSwitch.isChecked = isNightModeOn
+
+
+        // spinnerin listeneri
+        // Kielet toimii, mutta restartin jälkeen kun menee ekan kerran tähän fragmenttiin,
+        // spinneri valitsee listan ekan kielen, joka on saksa, asettaen sen valituksi kieleksi.
+        // setselection ohittaa localemuutoksen, mutta väärä arvo edelleen näkyy valittuna.
+        // ... pitäs korjata ...
+
+        binding.LangSpinner.setSelection(0,false)
+
+        binding.LangSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    setAppLocale(Locale.forLanguageTag(localeList[p2]))
+                }
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                }
+            }
+
+
+        return view
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun setAppLocale(locale: Locale) {
+        val localeManager = requireActivity().getSystemService(LocaleManager::class.java)
+        localeManager.applicationLocales = LocaleList(locale)
     }
 }

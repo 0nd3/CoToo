@@ -4,13 +4,13 @@
     <item
         android:id="@+id/menuFragment"
         android:icon="@android:drawable/ic_menu_info_details"
-        android:title="menu" />
+        android:title="@string/menu_greet" />
     <item
         android:id="@+id/emissionFragment"
         android:icon="@android:drawable/ic_menu_sort_by_size"
-        android:title="Emissions" />
+        android:title="@string/emissions_greet" />
     <item
         android:id="@+id/preferencesFragment"
         android:icon="@android:drawable/ic_menu_manage"
-        android:title="Preferences" />
+        android:title="@string/settings_greet" />
 </menu>

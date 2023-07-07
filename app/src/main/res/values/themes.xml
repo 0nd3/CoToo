@@ -4,11 +4,9 @@
     <style name="Theme.CoToo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/lightgreenbg</item>
-        <item name="colorPrimaryVariant">@color/darkgreenbg</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/lightgreenhl</item>
-        <item name="colorSecondaryVariant">@color/darkgreenhl</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Customize your theme here. -->
         <item name="android:background">@color/lightgreenbg</item>
